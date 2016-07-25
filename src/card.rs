@@ -14,21 +14,19 @@ pub enum Rank {
     Jack,
     Queen,
     King,
-    Ace
+    Ace,
 }
 
-#[derive(PartialEq,Eq,PartialOrd,Ord)]
 pub enum Suit {
     Diamonds,
     Clubs,
     Hearts,
-    Spades
+    Spades,
 }
 
-#[derive(Eq,Ord)]
 pub struct Card {
     suit: Suit,
-    rank: Rank
+    rank: Rank,
 }
 
 impl PartialEq for Card {
@@ -43,16 +41,34 @@ impl PartialOrd for Card {
     }
 }
 
-#[test]
-fn cards_of_equal_rank_are_equal() {
-    let four_of_spades = Card{ rank: Rank::Four, suit: Suit::Spades };
-    let four_of_diamonds = Card{ rank: Rank::Four, suit: Suit::Diamonds };
-    assert!(four_of_spades == four_of_diamonds);
-}
+#[cfg(test)]
+mod test {
+    use card::*;
+    use card::Rank::*;
+    use card::Suit::*;
+    #[test]
+    fn cards_of_equal_rank_are_equal() {
+        let four_of_spades = Card {
+            rank: Four,
+            suit: Spades,
+        };
+        let four_of_diamonds = Card {
+            rank: Four,
+            suit: Diamonds,
+        };
+        assert!(four_of_spades == four_of_diamonds);
+    }
 
-#[test]
-fn cards_can_be_compared_by_rank() {
-    let three_of_hearts = Card{ rank: Rank::Three, suit: Suit::Hearts };
-    let queen_of_clubs = Card{ rank: Rank::Queen, suit: Suit::Clubs };
-    assert!(three_of_hearts < queen_of_clubs);
+    #[test]
+    fn cards_can_be_compared_by_rank() {
+        let three_of_hearts = Card {
+            rank: Three,
+            suit: Hearts,
+        };
+        let queen_of_clubs = Card {
+            rank: Queen,
+            suit: Clubs,
+        };
+        assert!(three_of_hearts < queen_of_clubs);
+    }
 }
