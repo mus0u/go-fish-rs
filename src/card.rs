@@ -1,6 +1,8 @@
 use std::cmp::Ordering;
+use std::collections::HashSet;
+use card::Rank::*;
 
-#[derive(PartialEq,Eq,PartialOrd,Ord)]
+#[derive(Copy,Clone,PartialEq,Eq,Hash,PartialOrd,Ord,Debug)]
 pub enum Rank {
     Two,
     Three,
@@ -16,7 +18,28 @@ pub enum Rank {
     King,
     Ace,
 }
+impl Rank {
+    // SO UGLY AAAAAAAAAAAAA
+    pub fn all_ranks() -> HashSet<Rank> {
+        let mut result = HashSet::with_capacity(13);
+        result.insert(Two);
+        result.insert(Three);
+        result.insert(Four);
+        result.insert(Five);
+        result.insert(Six);
+        result.insert(Seven);
+        result.insert(Eight);
+        result.insert(Nine);
+        result.insert(Ten);
+        result.insert(Jack);
+        result.insert(Queen);
+        result.insert(King);
+        result.insert(Ace);
+        result
+    }
+}
 
+#[derive(Copy,Clone,Debug,PartialEq)]
 pub enum Suit {
     Diamonds,
     Clubs,
@@ -24,9 +47,10 @@ pub enum Suit {
     Spades,
 }
 
+#[derive(Copy,Clone,Debug)]
 pub struct Card {
-    suit: Suit,
-    rank: Rank,
+    pub suit: Suit,
+    pub rank: Rank,
 }
 
 impl PartialEq for Card {

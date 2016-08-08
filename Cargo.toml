@@ -1,6 +1,11 @@
 [package]
 name = "go-fish-rs"
 version = "0.1.0"
-authors = ["rreynolds"]
+authors = ["musou <musou@musou.co.uk>"]
 
 [dependencies]
+rand = "0.3.0"
+itertools = "0.4.0"
+
+[profile.release]
+opt-level = 3
